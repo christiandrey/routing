@@ -1,19 +1,19 @@
 {
 	"name": "elf-routing",
-	"version": "1.0.2-alpha",
+	"version": "1.0.3-alpha",
 	"main": "index.js",
 	"repository": "https://github.com/christiandrey/routing.git",
 	"author": "Christian Dréy <oluwaseun.adedire@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"build": "yarn tsc --target es5 --experimentalDecorators --declaration index.ts"
+		"build": "yarn tsc --target es5 --experimentalDecorators --emitDecoratorMetadata --declaration index.ts"
 	},
 	"devDependencies": {
 		"@types/node": "^12.7.1",
 		"typescript": "^3.5.3"
 	},
 	"dependencies": {
-		"elf-authentication": "^1.0.1-alpha",
+		"elf-authentication": "^1.0.2-alpha",
 		"elf-utils": "^1.0.6-alpha",
 		"express": "^4.17.1",
 		"reflect-metadata": "^0.1.13"
