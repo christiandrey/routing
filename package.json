@@ -1,0 +1,18 @@
+{
+	"name": "@elf/routing",
+	"version": "1.0.0-alpha",
+	"main": "index.ts",
+	"repository": "https://github.com/christiandrey/routing.git",
+	"author": "Christian Dréy <oluwaseun.adedire@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^12.7.1",
+		"typescript": "^3.5.3"
+	},
+	"dependencies": {
+		"@elf/authentication": "christiandrey/authentication",
+		"@elf/utils": "christiandrey/utils",
+		"express": "^4.17.1",
+		"reflect-metadata": "^0.1.13"
+	}
+}
