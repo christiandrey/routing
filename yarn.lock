@@ -2,26 +2,6 @@
 # yarn lockfile v1
 
 
-"@elf/authentication@christiandrey/authentication":
-  version "1.0.0-alpha"
-  resolved "https://codeload.github.com/christiandrey/authentication/tar.gz/8744c3c1e5f13ce1e041cb8e0326e609c5b525f0"
-  dependencies:
-    "@elf/utils" christiandrey/utils
-    bcrypt "^3.0.6"
-    express "^4.17.1"
-    jsonwebtoken "^8.5.1"
-    passport "^0.4.0"
-    passport-jwt "^4.0.0"
-    passport-local "^1.0.0"
-    typeorm "^0.2.18"
-
-"@elf/utils@christiandrey/utils":
-  version "1.0.5-alpha"
-  resolved "https://codeload.github.com/christiandrey/utils/tar.gz/4932a31ee836f2504e35b53f8a6235389f0cb061"
-  dependencies:
-    glob "^7.1.4"
-    reflect-metadata "^0.1.13"
-
 "@types/node@^12.7.1":
   version "12.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.1.tgz#3b5c3a26393c19b400844ac422bd0f631a94d69d"
@@ -333,6 +313,28 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
+
+elf-authentication@^1.0.0-alpha:
+  version "1.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/elf-authentication/-/elf-authentication-1.0.0-alpha.tgz#7bac893aa1e9cf12e6b07f3f865435f61d6d0036"
+  integrity sha512-PE3CiMgnAhXunRw9FvnrkvI+JpQca+PwPcfjS19YRAHl9c3h8Grzh3wU9mji3rWaX6JWvhmkxuOCbvLpnwLZWg==
+  dependencies:
+    bcrypt "^3.0.6"
+    elf-utils "^1.0.6-alpha"
+    express "^4.17.1"
+    jsonwebtoken "^8.5.1"
+    passport "^0.4.0"
+    passport-jwt "^4.0.0"
+    passport-local "^1.0.0"
+    typeorm "^0.2.18"
+
+elf-utils@^1.0.6-alpha:
+  version "1.0.6-alpha"
+  resolved "https://registry.yarnpkg.com/elf-utils/-/elf-utils-1.0.6-alpha.tgz#d961671d5ce80cb6fded1501f165de40db6e6cd2"
+  integrity sha512-BTsbpsU/venNvQ0XTn9kvMYA2+xfznKamUTIthDtUUiraJrq5YtQZRlxdu1UM85RFFBGYDkMLnV9FyuBpDt34Q==
+  dependencies:
+    glob "^7.1.4"
+    reflect-metadata "^0.1.13"
 
 emoji-regex@^7.0.1:
   version "7.0.3"

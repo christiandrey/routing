@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Request, Response, Express } from "express";
-import { loadTsClassesFromDirectory, PREFIX_METADATA_KEY, ROUTES_METADATA_KEY, IRouteDefinition, HttpStatusCodes, HttpResponse } from "@elf/utils";
-import { AuthorizeUser, AuthorizeUserRoles, AuthorizeUsers } from "@elf/authentication";
+import { loadTsClassesFromDirectory, PREFIX_METADATA_KEY, ROUTES_METADATA_KEY, IRouteDefinition, HttpStatusCodes, HttpResponse } from "elf-utils";
+import { AuthorizeUser, AuthorizeUserRoles, AuthorizeUsers } from "elf-authentication";
 import { ControllersType } from "../types";
 
 export const RegisterRoutes = (app: Express, resolveController?: (controller: any) => any, controllers: ControllersType = "src/controller") => {

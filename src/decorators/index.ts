@@ -1,4 +1,4 @@
-import { PREFIX_METADATA_KEY, initializeRoutesMetadata, updateRoutesMetadata } from "@elf/utils";
+import { PREFIX_METADATA_KEY, initializeRoutesMetadata, updateRoutesMetadata } from "elf-utils";
 
 export const Controller = (prefix: string = ""): ClassDecorator => {
 	return (target: Object) => {
