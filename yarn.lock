@@ -4,7 +4,7 @@
 
 "@elf/authentication@christiandrey/authentication":
   version "1.0.0-alpha"
-  resolved "https://codeload.github.com/christiandrey/authentication/tar.gz/101da3426b1bd4aa16dd79d4233862a68f0706f6"
+  resolved "https://codeload.github.com/christiandrey/authentication/tar.gz/8744c3c1e5f13ce1e041cb8e0326e609c5b525f0"
   dependencies:
     "@elf/utils" christiandrey/utils
     bcrypt "^3.0.6"
