@@ -1,6 +1,6 @@
 {
 	"name": "elf-routing",
-	"version": "1.0.3-alpha",
+	"version": "1.0.4-alpha",
 	"main": "index.js",
 	"repository": "https://github.com/christiandrey/routing.git",
 	"author": "Christian Dréy <oluwaseun.adedire@gmail.com>",
@@ -13,8 +13,8 @@
 		"typescript": "^3.5.3"
 	},
 	"dependencies": {
-		"elf-authentication": "^1.0.2-alpha",
-		"elf-utils": "^1.0.6-alpha",
+		"elf-authentication": "^1.0.3-alpha",
+		"elf-utils": "^1.0.7-alpha",
 		"express": "^4.17.1",
 		"reflect-metadata": "^0.1.13"
 	}
