@@ -1,14 +1,23 @@
 import "reflect-metadata";
+import * as path from "path";
+import * as fs from "fs";
 import { Request, Response, Express } from "express";
 import { loadTsClassesFromDirectory, PREFIX_METADATA_KEY, ROUTES_METADATA_KEY, IRouteDefinition, HttpStatusCodes, HttpResponse } from "elf-utils";
 import { AuthorizeUser, AuthorizeUserRoles, AuthorizeUsers } from "elf-authentication";
 import { ControllersType } from "../types";
 import { AuthorizeUserPermissions } from "elf-authentication/src/methods";
 
-export const RegisterRoutes = (app: Express, resolveController?: (controller: any) => any, controllers: ControllersType = "src/controller") => {
+export const RegisterRoutes = (
+	app: Express,
+	resolveController?: (controller: any) => any,
+	controllers: ControllersType = "src/controller",
+	generatePermissionsFile = false
+) => {
 	if (typeof controllers === "undefined" || typeof controllers === "string") {
 		controllers = loadTsClassesFromDirectory(controllers);
 	}
+
+	let permissionsContent = "";
 
 	controllers.forEach(controller => {
 		const instance = !!resolveController ? resolveController(controller) : new controller();
@@ -24,7 +33,7 @@ export const RegisterRoutes = (app: Express, resolveController?: (controller: an
 					try {
 						AuthorizeUserRoles(req, roles);
 						AuthorizeUsers(req, users);
-						!!checkPermissions && AuthorizeUserPermissions(req, `${requestType}:${prefix}:${path}`);
+						!!checkPermissions && AuthorizeUserPermissions(req, `${requestType}.${prefix}.${path}`);
 					} catch (error) {
 						res.status(HttpStatusCodes.unauthorized).send();
 						return;
@@ -33,6 +42,8 @@ export const RegisterRoutes = (app: Express, resolveController?: (controller: an
 					const result: HttpResponse = await instance[action](req, res, next);
 					res.status(result.code).json(result.data);
 				});
+
+				permissionsContent += `{\nvalue: "${requestType}.${prefix}.${path}",\ndescription: "${prefix}: ${requestType}"\n},\n`;
 			} else {
 				app[requestType](`/${prefix}/${path}`, async (req: Request, res: Response, next: Function) => {
 					const result: HttpResponse = await instance[action](req, res, next);
@@ -41,4 +52,9 @@ export const RegisterRoutes = (app: Express, resolveController?: (controller: an
 			}
 		});
 	});
+
+	if (!!generatePermissionsFile) {
+		const filePath = path.resolve(__dirname, "../elf.permissions.ts");
+		fs.appendFile(filePath, permissionsContent, () => {});
+	}
 };
