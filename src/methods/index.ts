@@ -43,7 +43,7 @@ export const RegisterRoutes = (
 					res.status(result.code).json(result.data);
 				});
 
-				permissionsContent += `{\nvalue: "${requestType}.${prefix}.${path}",\ndescription: "${prefix}: ${requestType}"\n},\n`;
+				permissionsContent = permissionsContent + `{\nvalue: "${requestType}.${prefix}.${path}",\ndescription: "${prefix}: ${requestType}"\n},\n`;
 			} else {
 				app[requestType](`/${prefix}/${path}`, async (req: Request, res: Response, next: Function) => {
 					const result: HttpResponse = await instance[action](req, res, next);
@@ -54,7 +54,7 @@ export const RegisterRoutes = (
 	});
 
 	if (!!generatePermissionsFile) {
-		const filePath = path.resolve(__dirname, "../elf.permissions.ts");
+		const filePath = path.resolve(__dirname, "/../../elf.permissions.ts");
 		fs.appendFile(filePath, permissionsContent, () => {});
 	}
 };

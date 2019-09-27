@@ -1,6 +1,6 @@
 {
 	"name": "elf-routing",
-	"version": "1.0.5-alpha",
+	"version": "1.0.6-alpha",
 	"main": "index.js",
 	"repository": "https://github.com/christiandrey/routing.git",
 	"author": "Christian Dréy <oluwaseun.adedire@gmail.com>",
