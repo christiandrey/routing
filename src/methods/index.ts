@@ -17,7 +17,7 @@ export const RegisterRoutes = (
 		controllers = loadTsClassesFromDirectory(controllers);
 	}
 
-	let permissionsContent = "";
+	let permissionsContent = "// PERMISSIONS\n[\n";
 
 	controllers.forEach(controller => {
 		const instance = !!resolveController ? resolveController(controller) : new controller();
@@ -26,6 +26,7 @@ export const RegisterRoutes = (
 
 		routes.forEach(route => {
 			const { path, action, requestType, authorize, allowAnonymous, checkPermissions, roles, users } = route;
+			console.log({ route });
 			const shouldAuthorize = !(!!allowAnonymous || !authorize);
 
 			if (shouldAuthorize) {
@@ -43,7 +44,7 @@ export const RegisterRoutes = (
 					res.status(result.code).json(result.data);
 				});
 
-				permissionsContent = permissionsContent + `{\nvalue: "${requestType}.${prefix}.${path}",\ndescription: "${prefix}: ${requestType}"\n},\n`;
+				permissionsContent = permissionsContent + `{\nvalue: "${requestType}.${prefix}.${path}",\ndescription: "${prefix}: ${getActionSentence(action, prefix)}"\n},\n`;
 			} else {
 				app[requestType](`/${prefix}/${path}`, async (req: Request, res: Response, next: Function) => {
 					const result: HttpResponse = await instance[action](req, res, next);
@@ -54,7 +55,45 @@ export const RegisterRoutes = (
 	});
 
 	if (!!generatePermissionsFile) {
-		const filePath = path.resolve(__dirname, "/../../elf.permissions.ts");
-		fs.appendFile(filePath, permissionsContent, () => {});
+		const filePath = path.resolve(process.cwd(), "./elf.permissions.ts");
+		fs.writeFileSync(filePath, permissionsContent + "]");
 	}
+};
+
+const getActionSentence = (action: string, prefix: string) => {
+	let sentence = ``;
+	let singularPrefix = prefix.substring(0, prefix.length - 2);
+
+	switch (action) {
+		case "create":
+			sentence = `Create a new ${singularPrefix}`;
+			break;
+		case "getById":
+			sentence = `Get a ${singularPrefix} by ID`;
+			break;
+		case "getAll":
+			sentence = `Get all ${prefix}`;
+			break;
+		case "update":
+			sentence = `Update a ${singularPrefix}`;
+			break;
+		case "delete":
+			sentence = `Delete a ${singularPrefix}`;
+			break;
+		case "deleteAll":
+			sentence = `Deletes all ${prefix}`;
+			break;
+		case "activate":
+			sentence = `Activate a ${singularPrefix}`;
+			break;
+		case "deactivate":
+			sentence = `Deactivate a ${singularPrefix}`;
+			break;
+		default:
+			sentence = `${action}`;
+			break;
+	}
+	sentence = `${prefix}: ${sentence}`;
+
+	return sentence;
 };
