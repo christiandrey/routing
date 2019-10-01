@@ -60,7 +60,7 @@ export const RegisterRoutes = (
 };
 
 const getSentenceCase = (text: string) => {
-	return `${text[0].toUpperCase}${text.slice(1)}`;
+	return `${text[0].toUpperCase()}${text.slice(1)}`;
 };
 
 const getActionSentence = (action: string, prefix: string) => {
