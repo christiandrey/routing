@@ -321,10 +321,10 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-elf-authentication@^1.0.8-alpha:
-  version "1.0.8-alpha"
-  resolved "https://registry.yarnpkg.com/elf-authentication/-/elf-authentication-1.0.8-alpha.tgz#a349bbac535e329c33e028b7fb9a62e3c68f6bab"
-  integrity sha512-vJg1DGSvzd7GPvaJ/zoqOibUD8w4zsrsob48aCA16instrztdEIq1MAxLG8xkuBiEBA8+TH5WMnvsfm0QatozA==
+elf-authentication@^1.0.9-alpha:
+  version "1.0.9-alpha"
+  resolved "https://registry.yarnpkg.com/elf-authentication/-/elf-authentication-1.0.9-alpha.tgz#e66eb839247b91b48a70716ccd8e5f481baad947"
+  integrity sha512-QxTxp0arXHvObuvuQHSA4M6KY/74pKNvscHBv3miQbRh5gVzKlC+AE3RkhgM2zsFameeE1f7NjJxBg6zKNB/Hg==
   dependencies:
     bcrypt "^3.0.6"
     elf-utils "^1.0.9-alpha"
