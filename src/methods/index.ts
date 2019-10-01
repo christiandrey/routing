@@ -24,8 +24,6 @@ export const RegisterRoutes = (
 		const prefix = Reflect.getMetadata(PREFIX_METADATA_KEY, controller) as string;
 		const routes = Reflect.getMetadata(ROUTES_METADATA_KEY, controller) as Array<IRouteDefinition>;
 
-		console.log("prefix", routes);
-
 		routes.forEach(route => {
 			const { path, action, requestType, authorize, allowAnonymous, checkPermissions, roles, users } = route;
 			const shouldAuthorize = !(!!allowAnonymous || !authorize);
@@ -45,7 +43,7 @@ export const RegisterRoutes = (
 					res.status(result.code).json(result.data);
 				});
 
-				permissionsContent = permissionsContent + `{\nvalue: "${requestType}.${prefix}.${path}",\ndescription: "${prefix}: ${getActionSentence(action, prefix)}"\n},\n`;
+				permissionsContent = permissionsContent + `{\nvalue: "${requestType}.${prefix}.${path}",\ndescription: "${getActionSentence(action, prefix)}"\n},\n`;
 			} else {
 				app[requestType](`/${prefix}/${path}`, async (req: Request, res: Response, next: Function) => {
 					const result: HttpResponse = await instance[action](req, res, next);
@@ -61,19 +59,26 @@ export const RegisterRoutes = (
 	}
 };
 
+const getSentenceCase = (text: string) => {
+	return `${text[0].toUpperCase}${text.slice(1)}`;
+};
+
 const getActionSentence = (action: string, prefix: string) => {
 	let sentence = ``;
-	let singularPrefix = prefix.substring(0, prefix.length - 2);
+	let singularPrefix = prefix.substring(0, prefix.length - 1);
 
 	switch (action) {
 		case "create":
 			sentence = `Create a new ${singularPrefix}`;
 			break;
 		case "getById":
-			sentence = `Get a ${singularPrefix} by ID`;
+			sentence = `Get a ${singularPrefix} by its Id`;
 			break;
 		case "getAll":
 			sentence = `Get all ${prefix}`;
+			break;
+		case "getAllLite":
+			sentence = `Get a lightweight version of all ${prefix}`;
 			break;
 		case "update":
 			sentence = `Update a ${singularPrefix}`;
@@ -94,7 +99,7 @@ const getActionSentence = (action: string, prefix: string) => {
 			sentence = `${action}`;
 			break;
 	}
-	sentence = `${prefix}: ${sentence}`;
+	sentence = `${getSentenceCase(prefix)}: ${sentence}`;
 
 	return sentence;
 };
