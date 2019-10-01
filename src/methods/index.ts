@@ -24,9 +24,10 @@ export const RegisterRoutes = (
 		const prefix = Reflect.getMetadata(PREFIX_METADATA_KEY, controller) as string;
 		const routes = Reflect.getMetadata(ROUTES_METADATA_KEY, controller) as Array<IRouteDefinition>;
 
+		console.log("prefix", routes);
+
 		routes.forEach(route => {
 			const { path, action, requestType, authorize, allowAnonymous, checkPermissions, roles, users } = route;
-			console.log({ route });
 			const shouldAuthorize = !(!!allowAnonymous || !authorize);
 
 			if (shouldAuthorize) {
