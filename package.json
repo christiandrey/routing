@@ -10,9 +10,12 @@
   },
   "devDependencies": {
     "@types/node": "^12.7.1",
+    "bcrypt": "^3.0.7",
+    "class-validator": "^0.11.0",
     "express": "4.x.x",
     "reflect-metadata": "0.1.x",
-    "typescript": "^3.5.3"
+    "typeorm": "^0.2.22",
+    "typescript": "^3.7.4"
   },
   "dependencies": {
     "elf-authentication": "1.2.x",
